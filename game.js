@@ -1,6 +1,5 @@
-
 const totalImages = 128;
-const allImages = Array.from({ length: totalImages }, (_, i) => `images/${i + 1}.jpg`);
+const allImages = Array.from({ length: totalImages }, (_, i) => `images/${i + 1}.png`);
 const urlParams = new URLSearchParams(window.location.search);
 const grid = document.getElementById('grid');
 let selectedId;
@@ -25,8 +24,8 @@ function renderGrid() {
 }
 
 function generateLink() {
-  const charIds = selectedImages.map(src => src.match(/\d+/)[0]).join(',');
-  const selectedCharId = selectedId.match(/\d+/)[0];
+  const charIds = selectedImages.map(src => src.match(/\\d+/)[0]).join(',');
+  const selectedCharId = selectedId.match(/\\d+/)[0];
   const url = `${window.location.origin}${window.location.pathname}?chars=${charIds}&selected=${selectedCharId}`;
   prompt('Ссылка на игру:', url);
 }
@@ -35,8 +34,8 @@ document.getElementById('generateLink').addEventListener('click', generateLink);
 
 if (urlParams.has('chars') && urlParams.has('selected')) {
   const ids = urlParams.get('chars').split(',').map(id => parseInt(id));
-  selectedId = `images/${urlParams.get('selected')}.jpg`;
-  selectedImages = ids.map(id => `images/${id}.jpg`);
+  selectedId = `images/${urlParams.get('selected')}.png`;
+  selectedImages = ids.map(id => `images/${id}.png`);
 } else {
   selectedImages = getRandomSubset(allImages, 24);
   selectedId = selectedImages[Math.floor(Math.random() * selectedImages.length)];
