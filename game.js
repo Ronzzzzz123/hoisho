@@ -24,11 +24,12 @@ function renderGrid() {
 }
 
 function generateLink() {
-  const charIds = selectedImages.map(src => src.match(/\\d+/)[0]).join(',');
-  const selectedCharId = selectedId.match(/\\d+/)[0];
+  const charIds = selectedImages.map(src => src.match(/\d+/)[0]).join(',');
+  const selectedCharId = selectedId.match(/\d+/)[0];
   const url = `${window.location.origin}${window.location.pathname}?chars=${charIds}&selected=${selectedCharId}`;
   prompt('Ссылка на игру:', url);
 }
+
 
 document.getElementById('generateLink').addEventListener('click', generateLink);
 
